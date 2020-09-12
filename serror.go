@@ -23,6 +23,10 @@ func New(i ...interface{}) *Error {
 func (e *Error) Error() *Error {
 	var errorString string
 	for _, d := range e.data {
+		if errorString == "" {
+			errorString = fmt.Sprintf("%v", d)
+			continue
+		}
 		errorString = fmt.Sprintf("%s %v", errorString, d)
 	}
 	e.err = errors.New(errorString)
