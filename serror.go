@@ -44,6 +44,7 @@ func Get(f func()) (e error) {
 		r := recover()
 		if r, ok := r.(*Error); ok {
 			e = r.Error().err
+			return
 		}
 		e = fmt.Errorf("%v", r)
 	}()
